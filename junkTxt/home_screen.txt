@@ -1,0 +1,177 @@
+import 'package:convo_1/theme.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:convo_1/screens/screens.dart';
+
+class home_screen extends StatefulWidget {
+  home_screen({Key? key}) : super(key: key);
+
+  @override
+  State<home_screen> createState() => _home_screenState();
+}
+
+final ValueNotifier<int> pageIndex = ValueNotifier(0);
+final ValueNotifier<String> titleText = ValueNotifier('Messages');
+
+class _home_screenState extends State<home_screen> {
+  final pages = const [
+    message_page(),
+    notifications_page(),
+    calls_page(),
+    contacts_page()
+  ];
+
+  void onNavItemSelected(index) {
+    pageIndex.value = index;
+    titleText.value = pageText[index];
+  }
+
+  final pageText = const ['Messages', 'Notifications', 'Calls', 'Contacts'];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        centerTitle: true,
+        title: ValueListenableBuilder(
+          // this is for Refreshing the app (rerender)
+          builder: (BuildContext context, String value, _) {
+            return Text(
+              pageText[pageIndex.value],
+              style: const TextStyle(
+                fontSize: 19,
+                fontWeight: FontWeight.bold,
+              ),
+            );
+          },
+          valueListenable: titleText,
+        ),
+      ),
+      body: ValueListenableBuilder(
+        valueListenable: pageIndex,
+        builder: (BuildContext context, int value, _) {
+          return pages[value];
+        },
+      ),
+      bottomNavigationBar: _bottomNavBar(
+        onItemSelected: onNavItemSelected,
+      ),
+    );
+  }
+}
+
+class _bottomNavBar extends StatefulWidget {
+  const _bottomNavBar({
+    Key? key,
+    required this.onItemSelected,
+  }) : super(key: key);
+
+  final ValueChanged<int> onItemSelected;
+
+  @override
+  State<_bottomNavBar> createState() => _bottomNavBarState();
+}
+
+class _bottomNavBarState extends State<_bottomNavBar> {
+  var selectedindex = 0;
+  void handleItemSelected(int index) {
+    setState(() {
+      selectedindex = index;
+    });
+    widget.onItemSelected(index);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+        child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        navBarItem(
+          icon: CupertinoIcons.bubble_left_bubble_right_fill,
+          label: 'Message',
+          index: 0,
+          isSelected: (selectedindex == 0),
+          onTap: handleItemSelected,
+        ),
+        navBarItem(
+          icon: CupertinoIcons.bell_solid,
+          label: 'Notifications',
+          index: 1,
+          isSelected: (selectedindex == 1),
+          onTap: handleItemSelected,
+        ),
+        navBarItem(
+          icon: CupertinoIcons.phone_fill,
+          label: 'Calls',
+          index: 2,
+          isSelected: (selectedindex == 2),
+          onTap: handleItemSelected,
+        ),
+        navBarItem(
+          icon: CupertinoIcons.person_2_fill,
+          label: 'Contacts',
+          index: 3,
+          onTap: handleItemSelected,
+          isSelected: (selectedindex == 3),
+        ),
+      ],
+    ));
+  }
+}
+
+class navBarItem extends StatelessWidget {
+  const navBarItem(
+      {Key? key,
+      required this.icon,
+      required this.label,
+      required this.index,
+      required this.onTap,
+      this.isSelected = false})
+      : super(key: key);
+
+  final String label;
+  final IconData icon;
+  final int index;
+  final bool isSelected;
+  final ValueChanged<int> onTap;
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      behavior: HitTestBehavior
+          .opaque, // content takes all space Around it, it fixes the issue when we need to click only on content
+      onTap: () {
+        onTap(index);
+      },
+      child: SizedBox(
+        height: 70,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              icon,
+              size: 23,
+              color: isSelected
+                  ? AppColors.secondary
+                  : null, // checking whether the icon is selected or not
+            ),
+            const SizedBox(
+              height: 8,
+            ),
+            Text(
+              label,
+              style: isSelected
+                  ? const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.secondary,
+                    )
+                  : const TextStyle(fontSize: 12),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

@@ -1,0 +1,64 @@
+  filter: Filter.and(
+        [
+          Filter.equal('type', 'messaging'),
+          Filter.in_('members', [
+            StreamChatCore.of(context).currentUser!.id,
+          ])
+        ],
+      ),
+      emptyBuilder: (context) => const SizedBox(
+        height: 1,
+        width: 2,
+      ),
+
+      errorBuilder: (context, error) => DisplayErrorMessage(
+        error: error,
+      ),
+      loadingBuilder: (
+        context,
+      ) =>
+          const Center(
+        child: SizedBox(
+          height: 80,
+          width: 80,
+          child: CircularProgressIndicator(),
+        ),
+      ),
+      listBuilder: (context, channels) {
+        return CustomScrollView(
+          //it is used for applying different scrolling effect such as horizontal,vertical.
+          slivers: [
+            const SliverToBoxAdapter(
+              // story section
+              child: _stories(),
+            ),
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (context, index) {
+                  return _messageTile(channel: channels[index]);
+                },
+                childCount: channels.length,
+              ),
+            ),
+          ],
+        );
+      },
+
+      ///////////////////////////
+      // CustomScrollView(
+//       //it is used for applying different scrolling effect such as horizontal,vertical.
+//       slivers: [
+//         const SliverToBoxAdapter(
+//           // story section
+//           child: _stories(),
+//         ),
+//         SliverList(
+
+//             ///profilers and their messages
+//             delegate: SliverChildBuilderDelegate(
+//           (context, index) => Text('data'),
+//         )),
+//       ],
+//     );
+
+///////////////////////////////////////////////////////////////////////
