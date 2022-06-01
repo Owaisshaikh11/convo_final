@@ -1,4 +1,5 @@
 import 'package:convo_1/screens/chat_screen.dart';
+import 'package:convo_1/theme.dart';
 import 'package:convo_1/widgets/display_error_message.dart';
 import 'package:convo_1/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -10,31 +11,43 @@ class contactsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return UserListCore(
-      limit: 20,
-      filter: Filter.notEqual('id', context.currentUser!.id),
-      emptyBuilder: (context) {
-        return const Center(child: Text('There are no users'));
-      },
-      loadingBuilder: (context) {
-        return const Center(child: CircularProgressIndicator());
-      },
-      errorBuilder: (context, error) {
-        return DisplayErrorMessage(error: error);
-      },
-      listBuilder: (context, items) {
-        return Scrollbar(
-          child: ListView.builder(
-            itemCount: items.length,
-            itemBuilder: (context, index) {
-              return items[index].when(
-                headerItem: (_) => const SizedBox.shrink(),
-                userItem: (user) => _ContactTile(user: user),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: AppColors.cardDark,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(11.0),
+          child: UserListCore(
+            limit: 20,
+            filter: Filter.notEqual('id', context.currentUser!.id),
+            emptyBuilder: (context) {
+              return const Center(child: Text('There are no users'));
+            },
+            loadingBuilder: (context) {
+              return const Center(child: CircularProgressIndicator());
+            },
+            errorBuilder: (context, error) {
+              return DisplayErrorMessage(error: error);
+            },
+            listBuilder: (context, items) {
+              return Scrollbar(
+                child: ListView.builder(
+                  itemCount: items.length,
+                  itemBuilder: (context, index) {
+                    return items[index].when(
+                      headerItem: (_) => const SizedBox.shrink(),
+                      userItem: (user) => _ContactTile(user: user),
+                    );
+                  },
+                ),
               );
             },
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }
@@ -70,6 +83,7 @@ class _ContactTile extends StatelessWidget {
         createChannel(context);
       },
       child: ListTile(
+        // selectedTileColor: Colors.amber,
         leading: Avatar.small(url: user.image),
         title: Text(user.name),
       ),
