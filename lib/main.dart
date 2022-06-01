@@ -1,3 +1,8 @@
+// ignore: duplicate_ignore
+// ignore_for_file: camel_case_types, duplicate_ignore
+
+// ignore_for_file: camel_case_types
+
 import 'package:convo_1/app.dart';
 import 'package:convo_1/routes.dart';
 import 'package:convo_1/screens/otp_page.dart';
@@ -8,7 +13,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
-import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
+// import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,7 +37,7 @@ class myapp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Convo',
-      home: SelectUserScreen(),
+      home: const SelectUserScreen(),
       theme: AppTheme().light,
       darkTheme: AppTheme().dark,
 

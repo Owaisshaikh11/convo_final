@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, prefer_const_constructors_in_immutables
+
 import 'package:convo_1/screens/otp_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -69,9 +71,9 @@ class _loginState extends State<login> {
                             color: Colors.white,
                             boxShadow: const [
                               BoxShadow(
-                                color: const Color.fromRGBO(20, 17, 116, .3),
+                                color: Color.fromRGBO(20, 17, 116, .3),
                                 blurRadius: 20,
-                                offset: const Offset(0, 8),
+                                offset: Offset(0, 8),
                               )
                             ]),
                         child: Stack(
@@ -121,6 +123,7 @@ class _loginState extends State<login> {
                               borderRadius: BorderRadius.circular(50)),
                           child: IconButton(
                             onPressed: () {
+                              // ignore: avoid_print
                               print(phonNo.text);
                               Navigator.push(
                                 context,

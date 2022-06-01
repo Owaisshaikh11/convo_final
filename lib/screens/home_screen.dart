@@ -1,12 +1,14 @@
+// ignore_for_file: camel_case_types, prefer_const_constructors_in_immutables, prefer_const_constructors
+
 import 'package:convo_1/screens/profile_screen.dart';
 import 'package:convo_1/theme.dart';
-import 'package:convo_1/widgets/icon_buttons.dart';
+// import 'package:convo_1/widgets/icon_buttons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:convo_1/screens/screens.dart';
 import 'package:convo_1/widgets/widgets.dart';
-import 'package:convo_1/helpers.dart';
-import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
+// import 'package:convo_1/helpers.dart';
+// import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
 import 'package:convo_1/app.dart';
 import '../widgets/glowing_action_button.dart';
 
@@ -153,8 +155,10 @@ class _bottomNavBarState extends State<_bottomNavBar> {
                       color: AppColors.secondary,
                       icon: CupertinoIcons.add,
                       onPressed: () {
-                        showDialog(
+                        showCupertinoModalPopup(
+                          barrierColor: Color(0x01000000),
                           context: context,
+                          // barrierColor: Color(0x01000000),
                           builder: (BuildContext context) => const Dialog(
                             child: AspectRatio(
                               aspectRatio: 8 / 6,

@@ -1,17 +1,18 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, avoid_print
 
-import 'package:convo_1/routes.dart';
-import 'package:convo_1/screens/home_screen.dart';
-import 'package:convo_1/screens/login_page.dart';
+// import 'package:convo_1/routes.dart';
+// import 'package:convo_1/screens/home_screen.dart';
+// import 'package:convo_1/screens/login_page.dart';
 import 'package:convo_1/screens/screens.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pinput.dart';
-import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_core/firebase_core.dart';
 
 class OTPCard extends StatefulWidget {
+  // ignore: prefer_const_constructors_in_immutables
   OTPCard({Key? key, required this.phone}) : super(key: key);
   final String phone;
   @override
@@ -94,7 +95,7 @@ class _OTPCardState extends State<OTPCard> {
                     style: GoogleFonts.poppins(
                         fontWeight: FontWeight.bold,
                         fontSize: 21,
-                        color: Color.fromARGB(255, 56, 56, 74)),
+                        color: const Color.fromARGB(255, 56, 56, 74)),
                   ),
                   Row(
                     children: [

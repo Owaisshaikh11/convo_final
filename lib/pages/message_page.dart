@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:convo_1/app.dart';
 import 'package:convo_1/helpers.dart';
 import 'package:convo_1/pages/empty_messagePage.dart';

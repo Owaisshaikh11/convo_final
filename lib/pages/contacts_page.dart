@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:convo_1/screens/chat_screen.dart';
 import 'package:convo_1/theme.dart';
 import 'package:convo_1/widgets/display_error_message.dart';

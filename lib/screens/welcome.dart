@@ -1,8 +1,8 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, camel_case_types
 
-import 'package:convo_1/routes.dart';
+// import 'package:convo_1/routes.dart';
 import 'package:convo_1/screens/login_page.dart';
-import 'package:convo_1/screens/otp_page.dart';
+// import 'package:convo_1/screens/otp_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

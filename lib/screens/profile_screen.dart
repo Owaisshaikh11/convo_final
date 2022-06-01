@@ -1,10 +1,12 @@
 import 'package:convo_1/app.dart';
-import 'package:convo_1/screens/screens.dart';
+// import 'package:convo_1/screens/screens.dart';
 import 'package:convo_1/screens/select_user_screen.dart';
+import 'package:convo_1/theme.dart';
 import 'package:convo_1/widgets/widgets.dart';
-import 'package:firebase_auth/firebase_auth.dart' as firebase;
-import 'package:flutter/cupertino.dart';
+// import 'package:firebase_auth/firebase_auth.dart' as firebase;
+// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+// import 'package:google_fonts/google_fonts.dart';
 import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -28,20 +30,34 @@ class ProfileScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            Hero(
-              tag: 'hero-profile-picture',
-              child: Avatar.large(url: user?.image),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 90),
+        child: Container(
+          decoration: BoxDecoration(
+            color: AppColors.cardDark,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 10.0,
+              vertical: 40,
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(user?.name ?? 'No name'),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Hero(
+                  tag: 'hero-profile-picture',
+                  child: Avatar.large(url: user?.image),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(user?.name ?? 'No name'),
+                ),
+                const Divider(),
+                const _SignOutButton(),
+              ],
             ),
-            const Divider(),
-            const _SignOutButton(),
-          ],
+          ),
         ),
       ),
     );

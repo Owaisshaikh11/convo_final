@@ -1,21 +1,21 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, camel_case_types, unused_element
 
 import 'dart:async';
 
 import 'package:convo_1/app.dart';
-import 'package:convo_1/models/message_data.dart';
-import 'package:convo_1/screens/home_screen.dart';
+// import 'package:convo_1/models/message_data.dart';
+// import 'package:convo_1/screens/home_screen.dart';
 import 'package:convo_1/theme.dart';
-import 'package:convo_1/widgets/glowing_action_button.dart';
+// import 'package:convo_1/widgets/glowing_action_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jiffy/jiffy.dart';
+// import 'package:jiffy/jiffy.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
-import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
+// import 'package:stream_chat_flutter_core/stream_chat_flutter_core.dart';
 import 'package:collection/collection.dart' show IterableExtension;
 import '../helpers.dart';
 import '../widgets/avatar.dart';
-import '../widgets/display_error_message.dart';
+// import '../widgets/display_error_message.dart';
 import '../widgets/icon_buttons.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
