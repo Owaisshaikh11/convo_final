@@ -2,6 +2,7 @@
 
 import 'package:convo_1/screens/otp_page.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
@@ -17,7 +18,9 @@ final TextEditingController phonNo = TextEditingController();
 class _loginState extends State<login> {
   @override
   Widget build(BuildContext context) {
+    // final GlobalKey<ScaffoldState> scaffoldkey = GlobalKey<ScaffoldState>();
     // final phonNo = TextEditingController();
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 247, 246, 252),
       body: SafeArea(
@@ -78,24 +81,36 @@ class _loginState extends State<login> {
                             ]),
                         child: Stack(
                           children: [
-                            InternationalPhoneNumberInput(
-                              textFieldController: phonNo,
-                              textStyle: GoogleFonts.poppins(
-                                color: Colors.grey.shade600,
-                              ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 10.0),
+                              child: InternationalPhoneNumberInput(
+                                textFieldController: phonNo,
+                                textStyle: GoogleFonts.poppins(
+                                  color: Colors.grey.shade600,
+                                ),
+                                ignoreBlank: false,
+                                selectorConfig: const SelectorConfig(
+                                    selectorType:
+                                        PhoneInputSelectorType.BOTTOM_SHEET),
 
-                              onInputChanged: (value) {},
-                              cursorColor: Colors.black,
-                              // ignoreBlank: true,
-                              selectorTextStyle:
-                                  TextStyle(color: Colors.grey.shade500),
-                              inputDecoration: InputDecoration(
-                                contentPadding: const EdgeInsets.only(
-                                    bottom: 12, left: -30),
-                                border: InputBorder.none,
-                                hintText: '(900)  000  0000',
-                                hintStyle: TextStyle(
-                                    color: Colors.grey.shade500, fontSize: 16),
+                                onInputChanged: (value) {},
+                                cursorColor: Colors.black,
+
+                                // ignoreBlank: true,
+                                selectorTextStyle:
+                                    TextStyle(color: Colors.grey.shade500),
+                                inputDecoration: InputDecoration(
+                                  contentPadding: const EdgeInsets.only(
+                                    bottom: 12,
+                                    left: -10,
+                                  ),
+                                  border: InputBorder.none,
+                                  hintText: '123  000  0000',
+                                  hintStyle: TextStyle(
+                                    color: Colors.grey.shade500,
+                                    fontSize: 16,
+                                  ),
+                                ),
                               ),
                             ),
                             Positioned(
@@ -123,17 +138,26 @@ class _loginState extends State<login> {
                               borderRadius: BorderRadius.circular(50)),
                           child: IconButton(
                             onPressed: () {
-                              // ignore: avoid_print
-                              print(phonNo.text);
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => OTPCard(
-                                    phone: phonNo.text,
+                              if (phonNo.text.length < 10) {
+                                // ignore: deprecated_member_use
+                                Fluttertoast.showToast(
+                                    msg: 'Please Enter a 10 Digit Phone no',
+                                    backgroundColor: Colors.white,
+                                    textColor:
+                                        const Color.fromARGB(255, 83, 83, 83));
+                              } else {
+                                // ignore: avoid_print
+                                print(phonNo.text);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => OTPCard(
+                                      phone: phonNo.text,
+                                    ),
                                   ),
-                                ),
-                              );
-                              // print(phonNo.text);
+                                );
+                                // print(phonNo.text);
+                              }
                             },
                             icon: const Icon(
                               Icons.arrow_forward,

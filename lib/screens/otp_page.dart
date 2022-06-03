@@ -1,12 +1,14 @@
-// ignore_for_file: deprecated_member_use, avoid_print
+// ignore_for_file: deprecated_member_use, avoid_print, prefer_is_empty
 
 // import 'package:convo_1/routes.dart';
 // import 'package:convo_1/screens/home_screen.dart';
 // import 'package:convo_1/screens/login_page.dart';
 import 'package:convo_1/screens/screens.dart';
+import 'package:convo_1/screens/select_user_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pinput.dart';
 // import 'package:firebase_core/firebase_core.dart';
@@ -215,10 +217,18 @@ class _OTPCardState extends State<OTPCard> {
                     borderRadius: BorderRadius.circular(50)),
                 child: IconButton(
                   onPressed: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => home_screen()),
-                    // );
+                    if (controller.text.length == 0) {
+                      Fluttertoast.showToast(
+                          msg: 'Check the Your sms App for otp',
+                          backgroundColor: Colors.white,
+                          textColor: const Color.fromARGB(255, 83, 83, 83));
+                    } else {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SelectUserScreen()),
+                      );
+                    }
                   },
                   icon: const Icon(
                     Icons.check,
